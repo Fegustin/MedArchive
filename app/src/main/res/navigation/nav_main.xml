@@ -18,5 +18,18 @@
         android:id="@+id/listOfItemsFragment"
         android:name="com.example.medarchive.ui.ListOfItemsFragment"
         android:label="fragment_list_of_items"
-        tools:layout="@layout/fragment_list_of_items" />
+        tools:layout="@layout/fragment_list_of_items" >
+        <action
+            android:id="@+id/action_listOfItemsFragment_to_lecturesFragment"
+            app:destination="@id/lecturesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lecturesFragment"
+        android:name="com.example.medarchive.LecturesFragment"
+        android:label="fragment_lectures"
+        tools:layout="@layout/fragment_lectures" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medarchive.R
 import com.example.medarchive.pojo.ItemMed
+import com.example.medarchive.ui.ListOfItemsFragmentDirections
 
 class ItemMedAdapter(private val listArray: List<ItemMed>, private val context: Context) :
     RecyclerView.Adapter<ItemMedAdapter.ViewHolder>() {
@@ -29,7 +30,9 @@ class ItemMedAdapter(private val listArray: List<ItemMed>, private val context: 
         holder.imageViewTitleMed.setImageResource(currentItem.imageTitleMed)
         holder.textViewNameItemMed.text = currentItem.nameItemMed
 
-        holder.layoutMed.setOnClickListener { Toast.makeText(context, "$currentItem", Toast.LENGTH_SHORT).show() }
+        holder.layoutMed.setOnClickListener {
+//            val action = ListOfItemsFragmentDirections
+        }
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
