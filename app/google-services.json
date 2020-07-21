@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "103206114682",
+    "firebase_url": "https://medarchive-89fb3.firebaseio.com",
+    "project_id": "medarchive-89fb3",
+    "storage_bucket": "medarchive-89fb3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103206114682:android:d099f05abf9579e2f6f2c3",
+        "android_client_info": {
+          "package_name": "com.example.medarchive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103206114682-no6b21edsp34ta77r09fgnb8u9kdu0v2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medarchive",
+            "certificate_hash": "a8ba7848242f3b2eef2862c3031b0f8c332323f9"
+          }
+        },
+        {
+          "client_id": "103206114682-71tja4u9l62cjl4c0cqcpe8ioslo9192.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcAZ8rBBw7zrRe4S4nbClYdKaA1OFWVo8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103206114682-71tja4u9l62cjl4c0cqcpe8ioslo9192.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
