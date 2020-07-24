@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="faculty_med">
+        <item>Факульет1</item>
+        <item>Факульет2</item>
+        <item>Факульет3</item>
+        <item>Факульет4</item>
+        <item>Факульет5</item>
+        <item>Факульет6</item>
+    </string-array>
+
+    <string-array name="faculty_subjects_1">
+        <item>Предмет1_Ф1</item>
+        <item>Предмет2_Ф1</item>
+        <item>Предмет3_Ф1</item>
+        <item>Предмет4_Ф1</item>
+        <item>Предмет5_Ф1</item>
+        <item>Предмет6_Ф1</item>
+        <item>Предмет7_Ф1</item>
+    </string-array>
+
+    <string-array name="faculty_subjects_2">
+        <item>Предмет1_Ф2</item>
+        <item>Предмет2_Ф2</item>
+        <item>Предмет3_Ф2</item>
+        <item>Предмет4_Ф2</item>
+        <item>Предмет5_Ф2</item>
+        <item>Предмет6_Ф2</item>
+        <item>Предмет7_Ф2</item>
+    </string-array>
+
+    <string-array name="faculty_subjects_3">
+        <item>Предмет1_Ф3</item>
+        <item>Предмет2_Ф3</item>
+        <item>Предмет3_Ф3</item>
+        <item>Предмет4_Ф3</item>
+        <item>Предмет5_Ф3</item>
+        <item>Предмет6_Ф3</item>
+        <item>Предмет7_Ф3</item>
+    </string-array>
+
+    <string-array name="faculty_subjects_4">
+        <item>Предмет1_Ф4</item>
+        <item>Предмет2_Ф4</item>
+        <item>Предмет3_Ф4</item>
+        <item>Предмет4_Ф4</item>
+        <item>Предмет5_Ф4</item>
+        <item>Предмет6_Ф4</item>
+        <item>Предмет7_Ф4</item>
+    </string-array>
+
+    <string-array name="faculty_subjects_5">
+        <item>Предмет1_Ф5</item>
+        <item>Предмет2_Ф5</item>
+        <item>Предмет3_Ф5</item>
+        <item>Предмет4_Ф5</item>
+        <item>Предмет5_Ф5</item>
+        <item>Предмет6_Ф5</item>
+        <item>Предмет7_Ф5</item>
+    </string-array>
+
+    <string-array name="faculty_subjects_6">
+        <item>Предмет1_Ф6</item>
+        <item>Предмет2_Ф6</item>
+        <item>Предмет3_Ф6</item>
+        <item>Предмет4_Ф6</item>
+        <item>Предмет5_Ф6</item>
+        <item>Предмет6_Ф6</item>
+        <item>Предмет7_Ф6</item>
+    </string-array>
+</resources>

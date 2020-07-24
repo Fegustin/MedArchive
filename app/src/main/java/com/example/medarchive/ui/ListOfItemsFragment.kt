@@ -25,6 +25,7 @@ class ListOfItemsFragment : Fragment() {
 
         val list = ArrayList<ItemMed>()
 
+<<<<<<< HEAD
         list.add(ItemMed("Medical biology and general genetics", R.drawable.ic_action))
         list.add(ItemMed("Sociology", R.drawable.ic_action))
         list.add(ItemMed("Анатомия человека", R.drawable.ic_action))
@@ -33,9 +34,24 @@ class ListOfItemsFragment : Fragment() {
         list.add(ItemMed("Bioorganic chemistry", R.drawable.ic_action))
         list.add(ItemMed("Валеология", R.drawable.ic_action))
         list.add(ItemMed("Биологическая химия", R.drawable.ic_action))
+=======
+        list.addAll(fillArray(resources.getStringArray(R.array.faculty_med)))
+>>>>>>> 2d9c416... Добавил факультеты и предметы к ним
 
         recyclerViewItemMed.adapter = ItemMedAdapter(list, requireContext())
         recyclerViewItemMed.layoutManager = GridLayoutManager(activity, 2)
         recyclerViewItemMed.setHasFixedSize(true)
     }
+
+    private fun fillArray(array: Array<String>): List<ItemMed> {
+        val listArray = ArrayList<ItemMed>()
+
+        for (element in array) {
+            val itemMed = ItemMed(element)
+            listArray.add(itemMed)
+        }
+
+        return listArray
+    }
+
 }

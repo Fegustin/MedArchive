@@ -12,7 +12,11 @@ buildscript {
         // Firebase
         classpath 'com.google.gms:google-services:4.3.3'
 
+<<<<<<< HEAD
         // Safe args
+=======
+        // Safe Args
+>>>>>>> 2d9c416... Добавил факультеты и предметы к ним
         def nav_version = "2.3.0"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
 

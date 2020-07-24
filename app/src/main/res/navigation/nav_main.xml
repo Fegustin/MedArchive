@@ -20,6 +20,7 @@
         android:label="fragment_list_of_items"
         tools:layout="@layout/fragment_list_of_items" >
         <action
+<<<<<<< HEAD
             android:id="@+id/action_listOfItemsFragment_to_lecturesFragment"
             app:destination="@id/lecturesFragment" />
     </fragment>
@@ -31,5 +32,18 @@
         <argument
             android:name="id"
             app:argType="integer" />
+=======
+            android:id="@+id/action_listOfItemsFragment_to_subjectsFragment"
+            app:destination="@id/subjectsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subjectsFragment"
+        android:name="com.example.medarchive.ui.SubjectsFragment"
+        android:label="fragment_subjects"
+        tools:layout="@layout/fragment_subjects" >
+        <argument
+            android:name="subject"
+            app:argType="string" />
+>>>>>>> 2d9c416... Добавил факультеты и предметы к ним
     </fragment>
 </navigation>

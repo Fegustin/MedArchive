@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medarchive.R
 import com.example.medarchive.pojo.ItemMed
@@ -15,6 +16,11 @@ import com.example.medarchive.ui.ListOfItemsFragmentDirections
 
 class ItemMedAdapter(private val listArray: List<ItemMed>, private val context: Context) :
     RecyclerView.Adapter<ItemMedAdapter.ViewHolder>() {
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val layoutMed: ConstraintLayout = view.findViewById(R.id.layoutMed)
+        val textViewNameItemMed: TextView = view.findViewById(R.id.textViewNameItemMed)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context)
@@ -27,18 +33,17 @@ class ItemMedAdapter(private val listArray: List<ItemMed>, private val context: 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = listArray[position]
 
-        holder.imageViewTitleMed.setImageResource(currentItem.imageTitleMed)
-        holder.textViewNameItemMed.text = currentItem.nameItemMed
+        holder.textViewNameItemMed.text = currentItem.faculty
 
+<<<<<<< HEAD
         holder.layoutMed.setOnClickListener {
 //            val action = ListOfItemsFragmentDirections
+=======
+        // Event
+        holder.layoutMed.setOnClickListener {
+            val action = ListOfItemsFragmentDirections.actionListOfItemsFragmentToSubjectsFragment(currentItem.faculty)
+            it.findNavController().navigate(action)
+>>>>>>> 2d9c416... Добавил факультеты и предметы к ним
         }
     }
-
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val layoutMed: ConstraintLayout = view.findViewById(R.id.layoutMed)
-        val imageViewTitleMed: ImageView = view.findViewById(R.id.imageViewTitleMed)
-        val textViewNameItemMed: TextView = view.findViewById(R.id.textViewNameItemMed)
-    }
-
 }
