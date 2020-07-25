@@ -1,17 +1,25 @@
 package com.example.medarchive.ui
 
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.medarchive.R
 import com.example.medarchive.adapter.ItemMedAdapter
 import com.example.medarchive.pojo.ItemMed
+import com.firebase.ui.auth.AuthUI
 import kotlinx.android.synthetic.main.fragment_list_of_items.*
 
 class ListOfItemsFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,18 +33,7 @@ class ListOfItemsFragment : Fragment() {
 
         val list = ArrayList<ItemMed>()
 
-<<<<<<< HEAD
-        list.add(ItemMed("Medical biology and general genetics", R.drawable.ic_action))
-        list.add(ItemMed("Sociology", R.drawable.ic_action))
-        list.add(ItemMed("Анатомия человека", R.drawable.ic_action))
-        list.add(ItemMed("Общая химия", R.drawable.ic_action))
-        list.add(ItemMed("История медицины", R.drawable.ic_action))
-        list.add(ItemMed("Bioorganic chemistry", R.drawable.ic_action))
-        list.add(ItemMed("Валеология", R.drawable.ic_action))
-        list.add(ItemMed("Биологическая химия", R.drawable.ic_action))
-=======
         list.addAll(fillArray(resources.getStringArray(R.array.faculty_med)))
->>>>>>> 2d9c416... Добавил факультеты и предметы к ним
 
         recyclerViewItemMed.adapter = ItemMedAdapter(list, requireContext())
         recyclerViewItemMed.layoutManager = GridLayoutManager(activity, 2)
@@ -54,4 +51,27 @@ class ListOfItemsFragment : Fragment() {
         return listArray
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_main, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.action_log_out -> {
+                activity?.let {
+                    AuthUI.getInstance()
+                        .signOut(it)
+                        .addOnCompleteListener {
+                            Toast.makeText(activity, "Вы вышли с аккаунта", Toast.LENGTH_SHORT)
+                                .show()
+                            view?.findNavController()?.navigate(R.id.action_global_authFragment)
+                        }
+                }
+                return true
+            }
+        }
+        return false
+    }
 }

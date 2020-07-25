@@ -35,15 +35,9 @@ class ItemMedAdapter(private val listArray: List<ItemMed>, private val context: 
 
         holder.textViewNameItemMed.text = currentItem.faculty
 
-<<<<<<< HEAD
-        holder.layoutMed.setOnClickListener {
-//            val action = ListOfItemsFragmentDirections
-=======
-        // Event
         holder.layoutMed.setOnClickListener {
             val action = ListOfItemsFragmentDirections.actionListOfItemsFragmentToSubjectsFragment(currentItem.faculty)
             it.findNavController().navigate(action)
->>>>>>> 2d9c416... Добавил факультеты и предметы к ним
         }
     }
 }

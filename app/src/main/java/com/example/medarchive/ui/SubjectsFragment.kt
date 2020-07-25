@@ -1,24 +1,32 @@
 package com.example.medarchive.ui
 
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medarchive.R
 import com.example.medarchive.adapter.SubjectAdapter
 import com.example.medarchive.pojo.FacultySubjects
+import com.firebase.ui.auth.AuthUI
 import kotlinx.android.synthetic.main.fragment_subjects.*
 
 
 class SubjectsFragment : Fragment() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_subjects, container, false)
     }
 
@@ -41,6 +49,12 @@ class SubjectsFragment : Fragment() {
         recyclerViewSubjects.adapter = SubjectAdapter(list, requireContext())
         recyclerViewSubjects.layoutManager = LinearLayoutManager(activity)
         recyclerViewSubjects.setHasFixedSize(true)
+
+
+        // toolbar Back
+//        val appBarConfiguration = AppBarConfiguration(view.findNavController().graph)
+//        view.findViewById<Toolbar>(R.id.toolbarSubject)
+//            .setupWithNavController(view.findNavController(), appBarConfiguration)
     }
 
     private fun fillArray(array: Array<String>): List<FacultySubjects> {
@@ -52,4 +66,29 @@ class SubjectsFragment : Fragment() {
         }
         return listArray
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_main, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.action_log_out -> {
+                activity?.let {
+                    AuthUI.getInstance()
+                        .signOut(it)
+                        .addOnCompleteListener {
+                            Toast.makeText(activity, "Вы вышли с аккаунта", Toast.LENGTH_SHORT)
+                                .show()
+                            view?.findNavController()?.navigate(R.id.action_global_authFragment)
+                        }
+                }
+                return true
+            }
+        }
+        return false
+    }
+
 }

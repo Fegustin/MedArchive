@@ -20,30 +20,31 @@
         android:label="fragment_list_of_items"
         tools:layout="@layout/fragment_list_of_items" >
         <action
-<<<<<<< HEAD
-            android:id="@+id/action_listOfItemsFragment_to_lecturesFragment"
-            app:destination="@id/lecturesFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/lecturesFragment"
-        android:name="com.example.medarchive.LecturesFragment"
-        android:label="fragment_lectures"
-        tools:layout="@layout/fragment_lectures" >
-        <argument
-            android:name="id"
-            app:argType="integer" />
-=======
             android:id="@+id/action_listOfItemsFragment_to_subjectsFragment"
-            app:destination="@id/subjectsFragment" />
+            app:destination="@id/subjectsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/subjectsFragment"
         android:name="com.example.medarchive.ui.SubjectsFragment"
-        android:label="fragment_subjects"
-        tools:layout="@layout/fragment_subjects" >
+        tools:layout="@layout/fragment_subjects">
         <argument
             android:name="subject"
             app:argType="string" />
->>>>>>> 2d9c416... Добавил факультеты и предметы к ним
+        <action
+            android:id="@+id/action_subjectsFragment_to_listOfItemsFragment"
+            app:destination="@id/listOfItemsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
+    <action
+        android:id="@+id/action_global_authFragment"
+        app:destination="@id/authFragment"
+        app:popUpTo="@+id/listOfItemsFragment"
+        app:popUpToInclusive="true" />
 </navigation>
