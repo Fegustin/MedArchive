@@ -49,12 +49,6 @@ class SubjectsFragment : Fragment() {
         recyclerViewSubjects.adapter = SubjectAdapter(list, requireContext())
         recyclerViewSubjects.layoutManager = LinearLayoutManager(activity)
         recyclerViewSubjects.setHasFixedSize(true)
-
-
-        // toolbar Back
-//        val appBarConfiguration = AppBarConfiguration(view.findNavController().graph)
-//        view.findViewById<Toolbar>(R.id.toolbarSubject)
-//            .setupWithNavController(view.findNavController(), appBarConfiguration)
     }
 
     private fun fillArray(array: Array<String>): List<FacultySubjects> {

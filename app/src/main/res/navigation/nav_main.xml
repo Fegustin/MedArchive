@@ -8,8 +8,7 @@
     <fragment
         android:id="@+id/authFragment"
         android:name="com.example.medarchive.ui.AuthFragment"
-        android:label="fragment_auth"
-        tools:layout="@layout/fragment_auth" >
+        tools:layout="@layout/fragment_auth">
         <action
             android:id="@+id/action_authFragment_to_listOfItemsFragment"
             app:destination="@id/listOfItemsFragment" />
@@ -17,8 +16,7 @@
     <fragment
         android:id="@+id/listOfItemsFragment"
         android:name="com.example.medarchive.ui.ListOfItemsFragment"
-        android:label="fragment_list_of_items"
-        tools:layout="@layout/fragment_list_of_items" >
+        tools:layout="@layout/fragment_list_of_items">
         <action
             android:id="@+id/action_listOfItemsFragment_to_subjectsFragment"
             app:destination="@id/subjectsFragment"
