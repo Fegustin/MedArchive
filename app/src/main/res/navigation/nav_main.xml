@@ -11,38 +11,41 @@
         tools:layout="@layout/fragment_auth">
         <action
             android:id="@+id/action_authFragment_to_listOfItemsFragment"
-            app:destination="@id/listOfItemsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/listOfItemsFragment"
-        android:name="com.example.medarchive.ui.ListOfItemsFragment"
-        tools:layout="@layout/fragment_list_of_items">
-        <action
-            android:id="@+id/action_listOfItemsFragment_to_subjectsFragment"
-            app:destination="@id/subjectsFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
-    <fragment
-        android:id="@+id/subjectsFragment"
-        android:name="com.example.medarchive.ui.SubjectsFragment"
-        tools:layout="@layout/fragment_subjects">
-        <argument
-            android:name="subject"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_subjectsFragment_to_listOfItemsFragment"
-            app:destination="@id/listOfItemsFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/navigation" />
     </fragment>
     <action
         android:id="@+id/action_global_authFragment"
         app:destination="@id/authFragment"
         app:popUpTo="@+id/listOfItemsFragment"
         app:popUpToInclusive="true" />
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/listOfItemsFragment">
+        <fragment
+            android:id="@+id/subjectsFragment"
+            android:name="com.example.medarchive.ui.SubjectsFragment"
+            tools:layout="@layout/fragment_subjects">
+            <argument
+                android:name="subject"
+                app:argType="string" />
+            <action
+                android:id="@+id/action_subjectsFragment_to_listOfItemsFragment"
+                app:destination="@id/listOfItemsFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        </fragment>
+        <fragment
+            android:id="@+id/listOfItemsFragment"
+            android:name="com.example.medarchive.ui.ListOfItemsFragment"
+            tools:layout="@layout/fragment_list_of_items">
+            <action
+                android:id="@+id/action_listOfItemsFragment_to_subjectsFragment"
+                app:destination="@id/subjectsFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        </fragment>
+    </navigation>
 </navigation>

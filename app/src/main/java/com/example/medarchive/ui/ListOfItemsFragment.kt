@@ -3,6 +3,7 @@ package com.example.medarchive.ui
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,6 +14,8 @@ import com.firebase.ui.auth.AuthUI
 import kotlinx.android.synthetic.main.fragment_list_of_items.*
 
 class ListOfItemsFragment : Fragment() {
+
+    private var adapter: ItemMedAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +35,9 @@ class ListOfItemsFragment : Fragment() {
         val list = ArrayList<ItemMed>()
 
         list.addAll(fillArray(resources.getStringArray(R.array.faculty_med)))
+        adapter = ItemMedAdapter(list, requireContext())
 
-        recyclerViewItemMed.adapter = ItemMedAdapter(list, requireContext())
+        recyclerViewItemMed.adapter = adapter
         recyclerViewItemMed.layoutManager = GridLayoutManager(activity, 2)
         recyclerViewItemMed.setHasFixedSize(true)
     }
@@ -52,6 +56,23 @@ class ListOfItemsFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_main, menu)
+
+        // Search
+        val menuItem = menu.findItem(R.id.app_bar_search)
+        val searchView = menuItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                adapter?.filter?.filter(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter?.filter?.filter(newText)
+                return false
+            }
+
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

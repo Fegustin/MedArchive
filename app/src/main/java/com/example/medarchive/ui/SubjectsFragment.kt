@@ -3,6 +3,7 @@ package com.example.medarchive.ui
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -17,6 +18,8 @@ import kotlinx.android.synthetic.main.fragment_subjects.*
 
 
 class SubjectsFragment : Fragment() {
+
+    private var adapter: SubjectAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +48,9 @@ class SubjectsFragment : Fragment() {
             "Факульет5" -> { list.addAll(fillArray(resources.getStringArray(R.array.faculty_subjects_5))) }
             else -> { list.addAll(fillArray(resources.getStringArray(R.array.faculty_subjects_6))) }
         }
+        adapter = SubjectAdapter(list, requireContext())
 
-        recyclerViewSubjects.adapter = SubjectAdapter(list, requireContext())
+        recyclerViewSubjects.adapter = adapter
         recyclerViewSubjects.layoutManager = LinearLayoutManager(activity)
         recyclerViewSubjects.setHasFixedSize(true)
     }
@@ -64,6 +68,23 @@ class SubjectsFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_main, menu)
+
+        // Search
+        val menuItem = menu.findItem(R.id.app_bar_search)
+        val searchView = menuItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                adapter?.filter?.filter(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter?.filter?.filter(newText)
+                return false
+            }
+
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
