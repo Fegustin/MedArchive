@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/oneCourse"
+            android:title="@string/oneCourse" />
+        <item
+            android:id="@+id/twoFragment"
+            android:title="@string/twoCourse" />
+        <item
+            android:id="@+id/threeFragment"
+            android:title="@string/threeCourse" />
+        <item
+            android:id="@+id/fourFragment"
+            android:title="@string/fourCourse" />
+        <item
+            android:id="@+id/fiveFragment"
+            android:title="@string/fiveCourse" />
+        <item
+            android:id="@+id/sixFragment"
+            android:title="@string/sixCourse" />
+    </group>
+
+    <item android:title="Прочее">
+        <menu>
+            <item
+                android:id="@+id/log_out"
+                android:title="@string/log_out" />
+        </menu>
+    </item>
+
+</menu>

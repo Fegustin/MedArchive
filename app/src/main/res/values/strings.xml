@@ -4,5 +4,11 @@
     <string name="sign_in">Sign in</string>
     <string name="сonfirm_email">Confirm email</string>
 
-    <string name="log_out">Log out</string>
+    <string name="log_out">Выход</string>
+    <string name="oneCourse">Первый Курс</string>
+    <string name="twoCourse">Второй Курс</string>
+    <string name="threeCourse">Третий Курс</string>
+    <string name="fourCourse">Четвертый Курс</string>
+    <string name="fiveCourse">Пятый Курс</string>
+    <string name="sixCourse">Шестой курс</string>
 </resources>

@@ -33,12 +33,6 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val user = FirebaseAuth.getInstance().currentUser
-
-        if (user != null) {
-            if (user.isEmailVerified) view.findNavController().navigate(R.id.action_authFragment_to_listOfItemsFragment)
-        }
-
 
         // Login and registration
         buttonAuth.setOnClickListener {
@@ -86,7 +80,7 @@ class AuthFragment : Fragment() {
                                     }
                                 }
                         } else {
-                            view?.findNavController()?.navigate(R.id.action_authFragment_to_listOfItemsFragment)
+                            view?.findNavController()?.navigate(R.id.action_authFragment_to_favoriteFragment)
                         }
                     }
 

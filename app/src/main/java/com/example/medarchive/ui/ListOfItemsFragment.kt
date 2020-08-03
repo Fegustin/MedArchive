@@ -75,22 +75,22 @@ class ListOfItemsFragment : Fragment() {
         })
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId) {
-            R.id.action_log_out -> {
-                activity?.let {
-                    AuthUI.getInstance()
-                        .signOut(it)
-                        .addOnCompleteListener {
-                            Toast.makeText(activity, "Вы вышли с аккаунта", Toast.LENGTH_SHORT)
-                                .show()
-                            view?.findNavController()?.navigate(R.id.action_global_authFragment)
-                        }
-                }
-                return true
-            }
-        }
-        return false
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//
+//        when (item.itemId) {
+//            R.id.action_log_out -> {
+//                activity?.let {
+//                    AuthUI.getInstance()
+//                        .signOut(it)
+//                        .addOnCompleteListener {
+//                            Toast.makeText(activity, "Вы вышли с аккаунта", Toast.LENGTH_SHORT)
+//                                .show()
+//                            view?.findNavController()?.navigate(R.id.action_global_authFragment)
+//                        }
+//                }
+//                return true
+//            }
+//        }
+//        return false
+//    }
 }

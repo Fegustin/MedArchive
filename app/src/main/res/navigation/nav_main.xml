@@ -3,15 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/authFragment">
+    app:startDestination="@id/favoriteFragment">
 
     <fragment
         android:id="@+id/authFragment"
         android:name="com.example.medarchive.ui.AuthFragment"
         tools:layout="@layout/fragment_auth">
         <action
-            android:id="@+id/action_authFragment_to_listOfItemsFragment"
-            app:destination="@id/navigation" />
+            android:id="@+id/action_authFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment"
+            app:popUpTo="@+id/favoriteFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <action
         android:id="@+id/action_global_authFragment"
@@ -48,4 +50,16 @@
                 app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         </fragment>
     </navigation>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.medarchive.ui.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_navigation"
+            app:destination="@id/navigation" />
+    </fragment>
 </navigation>
