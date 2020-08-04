@@ -8,26 +8,30 @@
             android:id="@+id/oneCourse"
             android:title="@string/oneCourse" />
         <item
-            android:id="@+id/twoFragment"
+            android:id="@+id/twoCourse"
             android:title="@string/twoCourse" />
         <item
-            android:id="@+id/threeFragment"
+            android:id="@+id/threeCourse"
             android:title="@string/threeCourse" />
         <item
-            android:id="@+id/fourFragment"
+            android:id="@+id/fourCourse"
             android:title="@string/fourCourse" />
         <item
-            android:id="@+id/fiveFragment"
+            android:id="@+id/fiveCourse"
             android:title="@string/fiveCourse" />
         <item
-            android:id="@+id/sixFragment"
+            android:id="@+id/sixCourse"
             android:title="@string/sixCourse" />
     </group>
 
-    <item android:title="Прочее">
+
+    <item android:title="@string/other">
         <menu>
             <item
-                android:id="@+id/log_out"
+                android:id="@+id/favorite"
+                android:title="@string/favorite" />
+            <item
+                android:id="@+id/logOut"
                 android:title="@string/log_out" />
         </menu>
     </item>

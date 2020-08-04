@@ -2,18 +2,14 @@ package com.example.medarchive.ui
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medarchive.R
 import com.example.medarchive.adapter.SubjectAdapter
 import com.example.medarchive.pojo.FacultySubjects
-import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_subjects.*
 
 
@@ -36,19 +32,22 @@ class SubjectsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val args = arguments?.let { SubjectsFragmentArgs.fromBundle(it) }
-
         val list = ArrayList<FacultySubjects>()
 
+        // По разному заполняет List для адаптера в зависимости от пришедших данных
+        val args = arguments?.let { SubjectsFragmentArgs.fromBundle(it) }
+
         when(args?.subject){
-            "Факульет1" -> { list.addAll(fillArray(resources.getStringArray(R.array.faculty_subjects_1))) }
+            "Факульет1" -> { list.addAll(fillArray(resources.getStringArray(R.array.faculty_cource_1))) }
             "Факульет2" -> { list.addAll(fillArray(resources.getStringArray(R.array.faculty_subjects_2))) }
             "Факульет3" -> { list.addAll(fillArray(resources.getStringArray(R.array.faculty_subjects_3))) }
             "Факульет4" -> { list.addAll(fillArray(resources.getStringArray(R.array.faculty_subjects_4))) }
             "Факульет5" -> { list.addAll(fillArray(resources.getStringArray(R.array.faculty_subjects_5))) }
-            else -> { list.addAll(fillArray(resources.getStringArray(R.array.faculty_subjects_6))) }
+            else -> { list.addAll(fillArray(resources.getStringArray(R.array.faculty_cource_1))) }
         }
-        adapter = SubjectAdapter(list, requireContext())
+
+        adapter = SubjectAdapter(list.sortedBy { it.items }, requireContext())
+        // ------------------ //
 
         recyclerViewSubjects.adapter = adapter
         recyclerViewSubjects.layoutManager = LinearLayoutManager(activity)

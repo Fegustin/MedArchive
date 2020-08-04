@@ -13,9 +13,15 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.medarchive.swipe.OnSwipeTouchListener
+import com.example.medarchive.ui.AuthFragmentDirections
+import com.example.medarchive.ui.FavoriteFragmentDirections
+import com.example.medarchive.ui.ListOfItemsFragmentDirections
+import com.example.medarchive.ui.SubjectsFragmentDirections
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.drawer_header.*
 
@@ -25,6 +31,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     private lateinit var listener: NavController.OnDestinationChangedListener
+
+    private var user: FirebaseUser? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +45,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setupWithNavController(navController)
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.favoriteFragment
+                R.id.favoriteFragment,
+                R.id.listOfItemsFragment,
+                R.id.subjectsFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -57,6 +67,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
         }
+
+        user = FirebaseAuth.getInstance().currentUser
+
+        if (user == null) {
+            val action = AuthFragmentDirections.actionGlobalAuthFragment()
+            navController.navigate(action)
+        }
+
+        drawerLayout.setOnTouchListener(object : OnSwipeTouchListener(this@MainActivity) {
+            override fun onSwipeLeft() {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    updateUserNameAndEmail()
+                }
+            }
+
+            override fun onSwipeRight() {
+                if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.openDrawer(GravityCompat.START)
+                    updateUserNameAndEmail()
+                }
+            }
+        })
+    }
+
+    private fun updateUserNameAndEmail() {
+        user?.let {
+            textViewUserName?.text = it.displayName
+            textViewEmail?.text = it.email
+        }
     }
 
     override fun onResume() {
@@ -70,21 +110,47 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
         when (item.itemId) {
-            R.id.log_out -> {
+            R.id.oneCourse -> {
+                val action = SubjectsFragmentDirections.actionGlobalSubjectsFragment2()
+                navController.navigate(action)
+                return true
+            }
+            R.id.twoCourse -> {
+
+            }
+            R.id.threeCourse -> {
+
+            }
+            R.id.fourCourse -> {
+
+            }
+            R.id.fiveCourse -> {
+
+            }
+            R.id.sixCourse -> {
+
+            }
+            R.id.favorite -> {
+                val action = FavoriteFragmentDirections.actionGlobalFavoriteFragment()
+                navController.navigate(action)
+                return true
+            }
+            R.id.logOut -> {
                 // Выход с аккаунта и переход на страницу авторизации
                 AuthUI.getInstance()
                     .signOut(this)
                     .addOnCompleteListener {
                         Toast.makeText(this, "Вы вышли с аккаунта", Toast.LENGTH_SHORT)
                             .show()
-                        findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_authFragment)
+                        val action = AuthFragmentDirections.actionGlobalAuthFragment()
+                        navController.navigate(action)
                     }
                 return true
             }
-        }
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
         }
         return true
     }
@@ -101,11 +167,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
 
-        val user = FirebaseAuth.getInstance().currentUser
-        user?.let {
-            textViewUserName?.text = it.displayName
-            textViewEmail?.text = it.email
-        }
+        updateUserNameAndEmail()
 
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()

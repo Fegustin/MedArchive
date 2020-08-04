@@ -2,15 +2,12 @@ package com.example.medarchive.ui
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.medarchive.R
 import com.example.medarchive.adapter.ItemMedAdapter
-import com.example.medarchive.pojo.ItemMed
-import com.firebase.ui.auth.AuthUI
+import com.example.medarchive.pojo.FacultyMed
 import kotlinx.android.synthetic.main.fragment_list_of_items.*
 
 class ListOfItemsFragment : Fragment() {
@@ -32,7 +29,7 @@ class ListOfItemsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val list = ArrayList<ItemMed>()
+        val list = ArrayList<FacultyMed>()
 
         list.addAll(fillArray(resources.getStringArray(R.array.faculty_med)))
         adapter = ItemMedAdapter(list, requireContext())
@@ -42,11 +39,11 @@ class ListOfItemsFragment : Fragment() {
         recyclerViewItemMed.setHasFixedSize(true)
     }
 
-    private fun fillArray(array: Array<String>): List<ItemMed> {
-        val listArray = ArrayList<ItemMed>()
+    private fun fillArray(array: Array<String>): List<FacultyMed> {
+        val listArray = ArrayList<FacultyMed>()
 
         for (element in array) {
-            val itemMed = ItemMed(element)
+            val itemMed = FacultyMed(element)
             listArray.add(itemMed)
         }
 

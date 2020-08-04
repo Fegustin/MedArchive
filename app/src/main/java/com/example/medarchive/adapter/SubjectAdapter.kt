@@ -12,7 +12,6 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medarchive.R
 import com.example.medarchive.pojo.FacultySubjects
-import com.example.medarchive.pojo.ItemMed
 import java.util.*
 import kotlin.collections.ArrayList
 

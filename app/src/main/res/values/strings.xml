@@ -2,7 +2,7 @@
     <string name="app_name">MedArchive</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_in">Sign in</string>
-    <string name="сonfirm_email">Confirm email</string>
+    <string name="сonfirm_email">Подтвердите вашу почту</string>
 
     <string name="log_out">Выход</string>
     <string name="oneCourse">Первый Курс</string>
@@ -11,4 +11,7 @@
     <string name="fourCourse">Четвертый Курс</string>
     <string name="fiveCourse">Пятый Курс</string>
     <string name="sixCourse">Шестой курс</string>
+    <string name="favorite">Избранное</string>
+    <string name="other">Прочее</string>
+    <string name="course">Курсы</string>
 </resources>

@@ -20,10 +20,5 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val user = FirebaseAuth.getInstance().currentUser
-
-        if (user == null) {
-            view.findNavController().navigate(R.id.action_favoriteFragment_to_authFragment)
-        }
     }
 }

@@ -1,7 +1,6 @@
 package com.example.medarchive.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +9,15 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medarchive.R
-import com.example.medarchive.pojo.ItemMed
+import com.example.medarchive.pojo.FacultyMed
 import com.example.medarchive.ui.ListOfItemsFragmentDirections
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ItemMedAdapter(private val listArray: List<ItemMed>, private val context: Context) :
+class ItemMedAdapter(private val listArray: List<FacultyMed>, private val context: Context) :
     RecyclerView.Adapter<ItemMedAdapter.ViewHolder>(), Filterable {
 
-    private var searchList: List<ItemMed> = listArray
+    private var searchList: List<FacultyMed> = listArray
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val layoutMed: ConstraintLayout = view.findViewById(R.id.layoutMed)
@@ -39,7 +38,7 @@ class ItemMedAdapter(private val listArray: List<ItemMed>, private val context: 
         holder.textViewNameItemMed.text = currentItem.faculty
 
         holder.layoutMed.setOnClickListener {
-            val action = ListOfItemsFragmentDirections.actionListOfItemsFragmentToSubjectsFragment(
+            val action = ListOfItemsFragmentDirections.actionGlobalSubjectsFragment2(
                 currentItem.faculty
             )
             it.findNavController().navigate(action)
@@ -52,7 +51,7 @@ class ItemMedAdapter(private val listArray: List<ItemMed>, private val context: 
                 searchList = if (p0.toString().isEmpty()) {
                     listArray
                 } else {
-                    val resultList = ArrayList<ItemMed>()
+                    val resultList = ArrayList<FacultyMed>()
                     val filterPattern = p0.toString().toLowerCase(Locale.ROOT).trim()
 
                     for (i in listArray) {
@@ -70,7 +69,7 @@ class ItemMedAdapter(private val listArray: List<ItemMed>, private val context: 
             }
 
             override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-                searchList = p1?.values as List<ItemMed>
+                searchList = p1?.values as List<FacultyMed>
                 notifyDataSetChanged()
             }
 
