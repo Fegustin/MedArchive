@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import com.example.medarchive.R
-import com.google.firebase.auth.FirebaseAuth
 
 class FavoriteFragment : Fragment() {
     override fun onCreateView(

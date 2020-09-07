@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MedArchive</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="sign_in">Sign in</string>
+    <string name="sign_in">Войти</string>
     <string name="сonfirm_email">Подтвердите вашу почту</string>
 
     <string name="log_out">Выход</string>
@@ -14,4 +14,11 @@
     <string name="favorite">Избранное</string>
     <string name="other">Прочее</string>
     <string name="course">Курсы</string>
+    <!--  Alert dialog hit  -->
+    <string name="hintAlertTitle">Об авторизации</string>
+    <string name="hintAlertMessage">
+        При нажатии кнопки вас перекинет в окно входа,
+        если у вас уже есть аккаунт или на окно регистрации если аккаунта нет.
+    </string>
+    <!--  ____  -->
 </resources>

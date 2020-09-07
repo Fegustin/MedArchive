@@ -1,21 +1,20 @@
 package com.example.medarchive.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medarchive.R
 import com.example.medarchive.adapter.SubjectAdapter
 import com.example.medarchive.pojo.FacultySubjects
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_subjects.*
 
 
 class SubjectsFragment : Fragment() {
 
-    private var adapter: SubjectAdapter? = null
+    private var subjectAdapter: SubjectAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +25,7 @@ class SubjectsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.i("test", "subject")
         return inflater.inflate(R.layout.fragment_subjects, container, false)
     }
 
@@ -34,7 +34,7 @@ class SubjectsFragment : Fragment() {
 
         val list = ArrayList<FacultySubjects>()
 
-        // По разному заполняет List для адаптера в зависимости от пришедших данных
+        // По разному заполняет List для адаптера в зависимости от пришедших данных (Потом нужно будет изменить код)
         val args = arguments?.let { SubjectsFragmentArgs.fromBundle(it) }
 
         when(args?.subject){
@@ -46,12 +46,14 @@ class SubjectsFragment : Fragment() {
             else -> { list.addAll(fillArray(resources.getStringArray(R.array.faculty_cource_1))) }
         }
 
-        adapter = SubjectAdapter(list.sortedBy { it.items }, requireContext())
+        subjectAdapter = SubjectAdapter(list.sortedBy { it.items }, requireContext())
         // ------------------ //
 
-        recyclerViewSubjects.adapter = adapter
-        recyclerViewSubjects.layoutManager = LinearLayoutManager(activity)
-        recyclerViewSubjects.setHasFixedSize(true)
+        recyclerViewSubjects.apply {
+            adapter = subjectAdapter
+            layoutManager = LinearLayoutManager(activity)
+            setHasFixedSize(true)
+        }
     }
 
     private fun fillArray(array: Array<String>): List<FacultySubjects> {
@@ -68,22 +70,23 @@ class SubjectsFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_main, menu)
 
-        // Search
+        // Поиск
         val menuItem = menu.findItem(R.id.app_bar_search)
         val searchView = menuItem.actionView as SearchView
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                adapter?.filter?.filter(query)
+                subjectAdapter?.filter?.filter(query)
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter?.filter?.filter(newText)
+                subjectAdapter?.filter?.filter(newText)
                 return false
             }
 
         })
+        // ---------- //
     }
 
 }

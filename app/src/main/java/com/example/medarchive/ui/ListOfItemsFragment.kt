@@ -1,6 +1,7 @@
 package com.example.medarchive.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -23,6 +24,7 @@ class ListOfItemsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.i("test", "ofItems")
         return inflater.inflate(R.layout.fragment_list_of_items, container, false)
     }
 
@@ -54,7 +56,7 @@ class ListOfItemsFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_main, menu)
 
-        // Search
+        // Поиск
         val menuItem = menu.findItem(R.id.app_bar_search)
         val searchView = menuItem.actionView as SearchView
 
@@ -70,24 +72,6 @@ class ListOfItemsFragment : Fragment() {
             }
 
         })
+        // -------- //
     }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//
-//        when (item.itemId) {
-//            R.id.action_log_out -> {
-//                activity?.let {
-//                    AuthUI.getInstance()
-//                        .signOut(it)
-//                        .addOnCompleteListener {
-//                            Toast.makeText(activity, "Вы вышли с аккаунта", Toast.LENGTH_SHORT)
-//                                .show()
-//                            view?.findNavController()?.navigate(R.id.action_global_authFragment)
-//                        }
-//                }
-//                return true
-//            }
-//        }
-//        return false
-//    }
 }
