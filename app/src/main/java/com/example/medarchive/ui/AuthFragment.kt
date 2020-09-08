@@ -9,11 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.medarchive.R
-import com.example.medarchive.ViewModalUser
-import com.example.medarchive.pojo.UserDate
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -22,8 +19,6 @@ import kotlinx.android.synthetic.main.fragment_auth.*
 
 
 class AuthFragment : Fragment() {
-
-    private val model: ViewModalUser by activityViewModels()
 
     companion object {
         private const val RC_SIGN_IN = 1001
@@ -38,6 +33,15 @@ class AuthFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Проверка зашел ли пользователь на свой акк
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if (user != null) {
+            val action = FavoriteFragmentDirections.actionGlobalFavoriteFragment()
+            view.findNavController().navigate(action)
+        }
+        // ----------- //
 
         // Login and registration
         buttonAuth.setOnClickListener {
@@ -87,9 +91,6 @@ class AuthFragment : Fragment() {
                                     }
                                 }
                         } else {
-                            val userDate = UserDate(user.displayName.toString(), user.email.toString())
-                            model.setUser(userDate)
-
                             view?.findNavController()?.navigate(R.id.action_global_favoriteFragment)
                         }
                     }

@@ -5,12 +5,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -23,8 +20,6 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.drawer_header.*
-import java.util.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -32,10 +27,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     private lateinit var listener: NavController.OnDestinationChangedListener
-
-    private var user: FirebaseUser? = null
-
-    private val model: ViewModalUser by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,21 +57,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     drawerLayout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
                 else -> {
-//                    updateUserNameAndEmail()
+                    // Обновление текста с именем и email в нав-баре
+                    val user = FirebaseAuth.getInstance().currentUser
+                    val v = navigationView.getHeaderView(0)
+                    updateUserNameAndEmail(v, user?.displayName.toString(), user?.email.toString())
+                    // ----- //
+
                     main_toolbar?.visibility = View.VISIBLE
                     drawerLayout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
                 }
             }
         }
-
-        // Проверка зашел ли пользователь на свой акк
-        user = FirebaseAuth.getInstance().currentUser
-
-        if (user == null) {
-            val action = AuthFragmentDirections.actionGlobalAuthFragment()
-            navController.navigate(action)
-        }
-        // ----------- //
     }
 
     override fun onResume() {
@@ -156,12 +143,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 || super.onSupportNavigateUp()
     }
 
-    // Не реализованная функция. Позже доделать
-//    private fun updateUserNameAndEmail(v: View) {
-//
-//        model.
-//
-//        v.findViewById<TextView>(R.id.textViewUserName)
-//        v.findViewById<TextView>(R.id.textViewEmail)
-//    }
+    private fun updateUserNameAndEmail(v: View, name: String, eMail: String) {
+        Toast.makeText(this, "Update", Toast.LENGTH_SHORT).show()
+        v.findViewById<TextView>(R.id.textViewUserName).text = name
+        v.findViewById<TextView>(R.id.textViewEmail).text = eMail
+    }
 }
