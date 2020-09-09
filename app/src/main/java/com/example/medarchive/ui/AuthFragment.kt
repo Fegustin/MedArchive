@@ -8,8 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import com.example.medarchive.NetworkConnection
 import com.example.medarchive.R
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
@@ -44,6 +48,20 @@ class AuthFragment : Fragment() {
         // ----------- //
 
         // Login and registration
+
+        // Мониторинг подключения к инернету
+        val networkConnection = activity?.applicationContext?.let { NetworkConnection(it) }
+        networkConnection?.observe(viewLifecycleOwner, Observer { isConnected ->
+            buttonAuth.isClickable = if (isConnected) {
+                buttonAuth.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.colorPrimary, null))
+                true
+            } else {
+                buttonAuth.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.colorGray, null))
+                false
+            }
+        })
+        // ------ //
+
         buttonAuth.setOnClickListener {
             val providers = arrayListOf(AuthUI.IdpConfig.EmailBuilder().build())
 
